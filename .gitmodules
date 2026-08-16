@@ -1,3 +1,4 @@
 [submodule "modules/limboai"]
 	path = modules/limboai
+	branch = release/1.8.0
 	url = https://github.com/limbonaut/limboai

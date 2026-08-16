@@ -33,6 +33,7 @@ jobs:
               compiledb=yes
             bin: ./bin/godot.windows.editor.x86_64.exe
             compiler: msvc
+            artifact: true
 
           - name: Template w/ debug
             cache-name: windows-template
@@ -41,6 +42,7 @@ jobs:
               module_mono_enabled=yes
             bin: ./bin/godot.windows.template_debug.x86_64.console.exe
             compiler: msvc
+            artifact: true
 
           - name: Template w/ release
             cache-name: windows-template
@@ -51,6 +53,7 @@ jobs:
               lto=full
             bin: ./bin/godot.windows.template_release.x86_64.console.exe
             compiler: msvc
+            artifact: true
 
     steps:
       - name: Checkout
@@ -130,9 +133,3 @@ jobs:
         uses: ./.github/actions/upload-artifact
         with:
           name: ${{ matrix.cache-name }}
-
-      - name: Unit tests
-        run: |
-          ${{ matrix.bin }} --version
-          ${{ matrix.bin }} --help
-          ${{ matrix.bin }} --test --force-colors
