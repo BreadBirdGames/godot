@@ -56,12 +56,12 @@ jobs:
             artifact: true
 
           - name: Template w/ release
-            cache-name: linux-template-mono-debug
-            target: template_debug
+            cache-name: linux-template-mono-release
+            target: template_release
             scons-flags: >-
               module_mono_enabled=yes
               lto=full
-            bin: ./bin/godot.linuxbsd.template_debug.x86_64.mono
+            bin: ./bin/godot.linuxbsd.template_release.x86_64.mono
             artifact: true
 
     steps:
