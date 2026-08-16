@@ -22,13 +22,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Editor (target=editor)
-            cache-name: windows-editor
+          - name: Editor
+            cache-name: windows-editor-mono
             target: editor
             scons-flags: >-
               windows_subsystem=console
               vsproj=yes
               vsproj_gen_only=no
+              module_mono_enabled=yes
+              compiledb=yes
             bin: ./bin/godot.windows.editor.x86_64.exe
             compiler: msvc
 
@@ -36,24 +38,21 @@ jobs:
             cache-name: windows-editor-clang
             target: editor
             scons-flags: >-
+              module_mono_enabled=yes
               windows_subsystem=console
               use_llvm=yes
             bin: ./bin/godot.windows.editor.x86_64.llvm.exe
             compiler: clang
 
-          - name: Template (target=template_release)
+          - name: Template  w/ release
             cache-name: windows-template
             target: template_release
+            scons-flags: >-
+              module_mono_enabled=yes
+              use_llvm=yes
+              lto=full
             bin: ./bin/godot.windows.template_release.x86_64.console.exe
             compiler: msvc
-
-          - name: Template w/ GCC (target=template_release, use_mingw=yes)
-            cache-name: windows-template-gcc
-            # MinGW takes MUCH longer to compile; save time by only targeting Template.
-            target: template_release
-            scons-flags: use_mingw=yes
-            bin: ./bin/godot.windows.template_release.x86_64.console.exe
-            compiler: gcc
 
     steps:
       - name: Checkout
