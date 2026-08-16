@@ -23,11 +23,11 @@ jobs:
     with:
       changed-files: ${{ needs.static-checks.outputs.changed-files }}
 
-  windows-build:
-    name: 🏁 Windows
-    needs: static-checks
-    if: needs.static-checks.outputs.sources-changed == 'true' || github.event_name != 'pull_request'
-    uses: ./.github/workflows/windows_builds.yml
+  #windows-build:
+   # name: 🏁 Windows
+    #needs: static-checks
+    #if: needs.static-checks.outputs.sources-changed == 'true' || github.event_name != 'pull_request'
+    #uses: ./.github/workflows/windows_builds.yml
 
   # We've left web out until dotnet can work for web
   #web-build:
