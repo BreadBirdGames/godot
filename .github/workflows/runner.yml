@@ -29,8 +29,9 @@ jobs:
     if: needs.static-checks.outputs.sources-changed == 'true' || github.event_name != 'pull_request'
     uses: ./.github/workflows/windows_builds.yml
 
-  web-build:
-    name: 🌐 Web
-    needs: static-checks
-    if: needs.static-checks.outputs.sources-changed == 'true' || github.event_name != 'pull_request'
-    uses: ./.github/workflows/web_builds.yml
+  # We've left web out until dotnet can work for web
+  #web-build:
+  #  name: 🌐 Web
+  #  needs: static-checks
+  #  if: needs.static-checks.outputs.sources-changed == 'true' || github.event_name != 'pull_request'
+  #  uses: ./.github/workflows/web_builds.yml
